@@ -1,0 +1,49 @@
+<h2>matInput</h2>
+<h3>Input with outline, hint, label, placeholder, suffix and prefix</h3>
+<form [formGroup]="form" action="">
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <span matTextPrefix>Mr.</span>
+
+    <input matInput formControlName="userName" />
+    @if(form.get('userName')?.hasError('required')){
+    <mat-error>Username is required</mat-error>
+    }
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="form.get('userName')?.setValue('')"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint align="end">Please enter email id</mat-hint>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+
+    @if(form.get('password')?.hasError('required')){
+    <mat-error>Password is required</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+
+    @if(form.get('email')?.hasError('required')){
+    <mat-error>Email is required</mat-error>
+    } @if(form.get('email')?.hasError('email')){
+    <mat-error>Invalid email address</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="resetForm()">
+    Submit
+  </button>
+</form>
+{{ form.value | json }}
+<h3>matNativeControl</h3>
+<span>Select date</span>
+<input matNativeControl type="search" />
+
+<input matInput value="Gautam" />
